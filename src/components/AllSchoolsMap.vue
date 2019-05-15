@@ -2,16 +2,6 @@
   <v-layout row justify-center>
     <v-card v-if="cases.length > 100">
       <v-layout justify-center row wrap>
-        <v-flex xs11>
-          <p>Type in the school or area you're looking for.</p>
-          <p>
-            Ingweni Phaphama Primary School is a challending school, because it
-            is rural and relatively newly built. If you copy and past it in, you
-            might need to push space bar or some key to mimic as if you typed it
-            in.
-          </p>
-          <p>Once search has</p>
-        </v-flex>
         <l-map
           class="mb-4"
           ref="map"
@@ -42,7 +32,7 @@
           <l-marker-cluster>
             <l-marker
               v-for="c in cases"
-              :key="c.id"
+              :key="c.nat_emis"
               :lat-lng="{ lat: c.lat, lng: c.lng }"
             >
               <l-popup>
@@ -109,8 +99,8 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
-    // LLayerGroup,
-    // LTooltip,
+    LLayerGroup,
+    LTooltip,
     LPopup,
     LControlZoom,
     LControlAttribution,
@@ -154,7 +144,6 @@ export default {
   methods: {
     fetchSchool(id) {
       console.log("TCL: fetchSchool -> id", id);
-
       this.$store.dispatch("fetchSchool", id);
     }
   }

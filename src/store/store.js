@@ -3,11 +3,11 @@ import Vuex from "vuex";
 import VuexPersistence from "vuex-persist";
 import Map from "./modules/Map";
 
+// TODO: Check about renaming this vuex-persist to avoid multi-site clashes on the browser.
 const vuexLocal = new VuexPersistence({
   supportCircular: true, // to solve errors I was getting
   storage: window.localStorage,
-  modules: ["Authentication", "Map"]
-  // modules: ["MarketsMap", 'RegisterStall', 'Authentication', 'ModifyState']
+  modules: ["Map"]
 });
 
 Vue.use(Vuex);
