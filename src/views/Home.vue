@@ -1,13 +1,13 @@
 <template>
-  <HelloWorld />
+  <all-schools-map></all-schools-map>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
+import AllSchoolsMap from "../components/AllSchoolsMap";
 
-  export default {
-    components: {
-      HelloWorld
-    }
+export default {
+  components: {
+    AllSchoolsMap
   }
+};
 </script>
