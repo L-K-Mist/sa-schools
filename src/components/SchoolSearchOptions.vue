@@ -16,7 +16,7 @@
       Please refine your search criterion (keeping in mind there's more than
       5000 schools in KZN alone - that's a lot to fetch from the web at once!)
     </p>
-    <v-flex v-if="regions" xs12>
+    <v-container grid-list-md>
       <v-layout row wrap>
         <v-checkbox
           v-model="selectedRegions"
@@ -58,9 +58,54 @@
           label="Zululand"
           value="ZULULAND"
         ></v-checkbox>
+        <p>{{ selectedRegions }}</p>
+
+        <v-flex v-if="regions" xs6>
+          <v-checkbox
+            v-model="selectedRegions"
+            label="Abaqulusi"
+            value="ABAQULUSI"
+          ></v-checkbox>
+          <v-checkbox
+            v-model="selectedRegions"
+            label="Ethekwini"
+            value="ETHEKWINI"
+          ></v-checkbox>
+          <v-checkbox
+            v-model="selectedRegions"
+            label="KwaZulu Natal"
+            value="KwaZulu Natal"
+          ></v-checkbox>
+          <v-checkbox
+            v-model="selectedRegions"
+            label="To Be Updated"
+            value="TO BE UPDATED"
+          ></v-checkbox>
+          <v-checkbox
+            v-model="selectedRegions"
+            label="Ukhahlamba"
+            value="UKHAHLAMBA"
+          ></v-checkbox>
+          <v-checkbox
+            v-model="selectedRegions"
+            label="Umgungundlovu"
+            value="UMGUNGUNDLOVU"
+          ></v-checkbox>
+          <v-checkbox
+            v-model="selectedRegions"
+            label="Vryheid"
+            value="VRYHEID"
+          ></v-checkbox>
+          <v-checkbox
+            v-model="selectedRegions"
+            label="Zululand"
+            value="ZULULAND"
+          ></v-checkbox>
+
+          <p>{{ selectedRegions }}</p>
+        </v-flex>
       </v-layout>
-      <p>{{ selectedRegions }}</p>
-    </v-flex>
+    </v-container>
   </div>
 </template>
 
@@ -69,7 +114,8 @@ import TitleCaseString from "@/helpers/TitleCaseString";
 export default {
   data() {
     return {
-      selectedRegions: []
+      selectedRegions: [],
+      selectedPhases: []
     };
   },
   computed: {
@@ -77,16 +123,7 @@ export default {
       return this.$store.getters.regions.map(region => TitleCaseString(region));
     }
   },
-  methods: {
-    deeCap(words) {
-      const wordsArr = words.split(" ");
-      return wordsArr.map(word => {
-        const lower = word.toLowerCase();
-
-        return lower.charAt(0).toUpperCase() + lower.slice(1);
-      });
-    }
-  }
+  methods: {}
 };
 </script>
 

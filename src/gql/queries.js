@@ -1,15 +1,5 @@
 import gql from "graphql-tag";
 
-export const ME_QUERY = gql`
-  query MeQuery {
-    me {
-      id
-      name
-      email
-    }
-  }
-`;
-
 export const SCHOOL_BY_ID = gql`
   query sa_schools($id: String!) {
     sa_schools(where: { nat_emis: { _eq: $id } }) {
@@ -32,24 +22,38 @@ export const SCHOOL_BY_ID = gql`
 `;
 
 export const KZN_SCHOOLS_GPS = gql`
-  query sa_schools {
-    sa_schools(
-      where: {
-        _and: [
-          { _not: { lat: { _eq: 0 } } }
-          { province: { _eq: "KZN" } }
-          { region: { _eq: "ETHEKWINI" } }
-          { name: { _eq: "SABUYAZE SECONDARY SCHOOL" } }
-        ]
+  query sa_schools($regions: sa_schools_bool_exp!) {
+    sa_schools_aggregate(where: $regions) {
+      aggregate {
+        count
       }
-    ) {
+    }
+    sa_schools(where: $regions) {
+      name
       lat
       lng
-      name
       nat_emis
     }
   }
 `;
+/**
+ EXAMPLE Variables for KZN_SCHOOLS_GPS
+
+ {
+  "regions": {
+    "_or": [
+      {"region": {"_eq": "ETHEKWINI"}},
+      {"region": {"_eq": "KwaZulu Natal"}}
+    ],
+    "_and":
+      {"_or":  [
+        {"phase": {"_eq": "PRIMARY SCHOOL"}},
+        {"phase": {"_eq": "PRE-PRIMARY SCHOOL"}}
+      ]}
+
+  }
+}
+ */
 
 export const SCHOOLS_BY_REGION = gql`
   query sa_schools($region: String!) {
