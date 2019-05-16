@@ -2,13 +2,16 @@
   <div>
     <div>
       <select v-model="selectedTileSet" @change="setTileSet(selectedTileSet)">
-        <option v-for="tileset in tileSets" :value="tileset.tileLayer">{{
-          tileset.name
-        }}</option>
+        <option
+          v-for="tileset in tileSets"
+          :value="tileset.tileLayer"
+          :key="tileset.name"
+          >{{ tileset.name }}</option
+        >
       </select>
     </div>
     <div class="listings" id="listings">
-      <div class="item" v-for="marker in markers">
+      <div class="item" v-for="marker in markers" :key="marker.options.title">
         <a class="title" @click="markerFunction(marker.options.title)">{{
           marker.options.title
         }}</a>

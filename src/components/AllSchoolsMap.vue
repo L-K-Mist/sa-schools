@@ -3,18 +3,7 @@
     <v-card>
       <v-container grid-list-xs>
         <v-layout justify-center row wrap>
-          <v-flex xs12>
-            <p>
-              This map uses publicly available data from
-              <a
-                href="https://www.education.gov.za/Programmes/EMIS/EMISDownloads.aspx"
-                target="blank"
-                >the Department of Basic Education</a
-              >. The data has been uploaded to a postgreSQL database, wrapped in
-              <a href="https://hasura.io/" target="blank">Hasura</a>, as a
-              GraphQL api, that this statically hosted VueJs frontend consumes.
-            </p>
-          </v-flex>
+          <school-search></school-search>
           <l-map
             class="mb-4"
             ref="map"
@@ -89,6 +78,7 @@ import "leaflet-defaulticon-compatibility";
 import "leaflet-geosearch/dist/style.css";
 import "leaflet-geosearch/assets/css/leaflet.css";
 // //
+import SchoolSearch from "@/components/SchoolSearchOptions";
 
 const tileProviders = [
   {
@@ -120,7 +110,8 @@ export default {
     LControlAttribution,
     LControlScale,
     LControlLayers,
-    LMarkerCluster: Vue2LeafletMarkerCluster
+    LMarkerCluster: Vue2LeafletMarkerCluster,
+    SchoolSearch
   },
   mounted() {
     this.$store.dispatch("kznSchools");

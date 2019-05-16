@@ -3,7 +3,24 @@ import { KZN_SCHOOLS_GPS, SCHOOL_BY_ID } from "@/gql/queries.js";
 
 const state = {
   markerPosition: { lat: -28.63324560499325, lng: 30.827636718750004 },
-
+  phases: [
+    "Combined School",
+    "Intermediate School",
+    "Pre-Primary School",
+    "Primary School",
+    "Secondary School",
+    "Special Needs School"
+  ],
+  regions: [
+    "ABAQULUSI",
+    "ETHEKWINI",
+    "KwaZulu Natal",
+    "TO BE UPDATED",
+    "UKHAHLAMBA",
+    "UMGUNGUNDLOVU",
+    "VRYHEID",
+    "ZULULAND"
+  ],
   kznSchools: null,
   activeSchool: null,
   showSchool: false
@@ -13,7 +30,9 @@ const getters = {
   markerPosition: state => state.markerPosition,
   kznSchools: state => state.kznSchools,
   activeSchool: state => state.activeSchool,
-  showSchool: state => state.showSchool
+  showSchool: state => state.showSchool,
+  phases: state => state.phases,
+  regions: state => state.regions
 };
 
 const mutations = {

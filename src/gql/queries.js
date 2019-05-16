@@ -39,6 +39,7 @@ export const KZN_SCHOOLS_GPS = gql`
           { _not: { lat: { _eq: 0 } } }
           { province: { _eq: "KZN" } }
           { region: { _eq: "ETHEKWINI" } }
+          { name: { _eq: "SABUYAZE SECONDARY SCHOOL" } }
         ]
       }
     ) {
@@ -64,7 +65,11 @@ export const SCHOOLS_BY_REGION = gql`
 
     sa_schools(
       where: {
-        _and: [{ _not: { lat: { _eq: "0" } } }, { region: { _eq: $region } }]
+        _and: [
+          { _not: { lat: { _eq: "0" } } }
+          { region: { _eq: $region } }
+          { name: { _eq: "SABUYAZE SECONDARY SCHOOL" } }
+        ]
       }
     ) {
       region
