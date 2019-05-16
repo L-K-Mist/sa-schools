@@ -59,8 +59,8 @@ import {
   LMap,
   LTileLayer,
   LMarker,
-  LLayerGroup,
-  LTooltip,
+  // LLayerGroup,
+  // LTooltip,
   LPopup,
   LControlZoom,
   LControlAttribution,
@@ -101,8 +101,8 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
-    LLayerGroup,
-    LTooltip,
+    // LLayerGroup,
+    // LTooltip,
     LPopup,
     LControlZoom,
     LControlAttribution,
@@ -111,11 +111,12 @@ export default {
     LMarkerCluster: Vue2LeafletMarkerCluster
   },
   mounted() {
-    if (!this.cases) {
-      console.log("Fetching online array of schools");
-      this.$store.dispatch("kznSchools");
-    }
-    this.$nextTick(() => {});
+    this.$store.dispatch("kznSchools");
+    // if (!this.cases) {
+    //   console.log("Fetching online array of schools");
+    //   this.$store.dispatch("kznSchools");
+    // }
+    // this.$nextTick(() => {});
   },
   data() {
     return {

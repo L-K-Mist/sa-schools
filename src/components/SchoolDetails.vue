@@ -11,7 +11,7 @@
               dark
               @click="dialog = false"
             >
-              <v-icon medium>fa-close</v-icon>
+              <v-icon medium>fa-window-close</v-icon>
             </v-btn>
             <br />
             <div class="caption">

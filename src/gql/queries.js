@@ -35,7 +35,11 @@ export const KZN_SCHOOLS_GPS = gql`
   query sa_schools {
     sa_schools(
       where: {
-        _and: [{ _not: { lat: { _eq: 0 } } }, { province: { _eq: "KZN" } }]
+        _and: [
+          { _not: { lat: { _eq: 0 } } }
+          { province: { _eq: "KZN" } }
+          { region: { _eq: "ETHEKWINI" } }
+        ]
       }
     ) {
       lat

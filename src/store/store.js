@@ -7,7 +7,8 @@ import Map from "./modules/Map";
 const vuexLocal = new VuexPersistence({
   supportCircular: true, // to solve errors I was getting
   storage: window.localStorage,
-  modules: ["Map"]
+  // modules: ["Map"]
+  modules: []
 });
 
 Vue.use(Vuex);
