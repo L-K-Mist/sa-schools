@@ -1,53 +1,55 @@
 <template>
   <v-layout row justify-center>
-    <v-card v-if="cases.length > 100">
-      <v-layout justify-center row wrap>
-        <l-map
-          class="mb-4"
-          ref="map"
-          style="z-index: 2; height: 80vh; width: 90vw"
-          :zoom="mapOptions.zoom"
-          :options="{ zoomControl: false, attributionControl: false }"
-          :center="mapOptions.center"
-          :min-zoom="mapOptions.minZoom"
-          :max-zoom="mapOptions.maxZoom"
-        >
-          <l-control-layers :position="mapOptions.layersPosition" />
-          <l-tile-layer
-            v-for="(tileProvider, index) in tileProviders"
-            :key="index"
-            layerType="base"
-            :name="tileProvider.name"
-            :visible="tileProvider.visible"
-            :url="tileProvider.url"
-            :attribution="tileProvider.attribution"
-          />
-          <!-- <v-geosearch :options="geosearchOptions"></v-geosearch> -->
-          <l-control-zoom :position="mapOptions.zoomPosition" />
-          <l-control-attribution
-            :position="mapOptions.attributionPosition"
-            :prefix="mapOptions.attributionPrefix"
-          />
-          <l-control-scale :imperial="false" />
-          <l-marker-cluster>
-            <l-marker
-              v-for="c in cases"
-              :key="c.nat_emis"
-              :lat-lng="{ lat: c.lat, lng: c.lng }"
-            >
-              <l-popup>
-                <div class="body-2">{{ c.name }}</div>
-                <div class="body-1">{{ c.nat_emis }}</div>
-                <br />
-                <v-btn @click="fetchSchool(c.nat_emis)" color="success">
-                  <v-icon>fa-info</v-icon>&nbsp; &nbsp; More info
-                </v-btn>
-              </l-popup>
-            </l-marker>
-          </l-marker-cluster>
-        </l-map>
-        <br />
-      </v-layout>
+    <v-card v-if="cases">
+      <v-container grid-list-xs>
+        <v-layout justify-center row wrap>
+          <l-map
+            class="mb-4"
+            ref="map"
+            style="z-index: 2; height: 80vh; width: 90vw"
+            :zoom="mapOptions.zoom"
+            :options="{ zoomControl: false, attributionControl: false }"
+            :center="mapOptions.center"
+            :min-zoom="mapOptions.minZoom"
+            :max-zoom="mapOptions.maxZoom"
+          >
+            <l-control-layers :position="mapOptions.layersPosition" />
+            <l-tile-layer
+              v-for="(tileProvider, index) in tileProviders"
+              :key="index"
+              layerType="base"
+              :name="tileProvider.name"
+              :visible="tileProvider.visible"
+              :url="tileProvider.url"
+              :attribution="tileProvider.attribution"
+            />
+            <!-- <v-geosearch :options="geosearchOptions"></v-geosearch> -->
+            <l-control-zoom :position="mapOptions.zoomPosition" />
+            <l-control-attribution
+              :position="mapOptions.attributionPosition"
+              :prefix="mapOptions.attributionPrefix"
+            />
+            <l-control-scale :imperial="false" />
+            <l-marker-cluster>
+              <l-marker
+                v-for="c in cases"
+                :key="c.nat_emis"
+                :lat-lng="{ lat: c.lat, lng: c.lng }"
+              >
+                <l-popup>
+                  <div class="body-2">{{ c.name }}</div>
+                  <div class="body-1">{{ c.nat_emis }}</div>
+                  <br />
+                  <v-btn @click="fetchSchool(c.nat_emis)" color="success">
+                    <v-icon small>fa-info</v-icon>&nbsp; &nbsp; More info
+                  </v-btn>
+                </l-popup>
+              </l-marker>
+            </l-marker-cluster>
+          </l-map>
+          <br />
+        </v-layout>
+      </v-container>
     </v-card>
   </v-layout>
 </template>
@@ -109,7 +111,8 @@ export default {
     LMarkerCluster: Vue2LeafletMarkerCluster
   },
   mounted() {
-    if (this.cases.length < 100) {
+    if (!this.cases) {
+      console.log("Fetching online array of schools");
       this.$store.dispatch("kznSchools");
     }
     this.$nextTick(() => {});
