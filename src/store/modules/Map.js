@@ -30,8 +30,8 @@ const actions = {
   async kznSchools({ commit }) {
     try {
       const response = await apollo.query({
-        query: KZN_SCHOOLS_GPS,
-        fetchPolicy: "no-cache" // Already got data persistence with Vuex Persist plus this is a huge array
+        query: KZN_SCHOOLS_GPS
+        // fetchPolicy: "no-cache" // Already got data persistence with Vuex Persist plus this is a huge array
       });
       console.log("TCL: getSchoolsKZN -> response", response.data.sa_schools);
       commit("kznSchools", response.data.sa_schools);

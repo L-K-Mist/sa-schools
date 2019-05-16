@@ -1,8 +1,20 @@
 <template>
   <v-layout row justify-center>
-    <v-card v-if="cases">
+    <v-card>
       <v-container grid-list-xs>
         <v-layout justify-center row wrap>
+          <v-flex xs12>
+            <p>
+              This map uses publicly available data from
+              <a
+                href="https://www.education.gov.za/Programmes/EMIS/EMISDownloads.aspx"
+                target="blank"
+                >the Department of Basic Education</a
+              >. The data has been uploaded to a postgreSQL database, wrapped in
+              <a href="https://hasura.io/" target="blank">Hasura</a>, as a
+              GraphQL api, that this statically hosted VueJs frontend consumes.
+            </p>
+          </v-flex>
           <l-map
             class="mb-4"
             ref="map"
@@ -30,7 +42,7 @@
               :prefix="mapOptions.attributionPrefix"
             />
             <l-control-scale :imperial="false" />
-            <l-marker-cluster>
+            <l-marker-cluster v-if="cases">
               <l-marker
                 v-for="c in cases"
                 :key="c.nat_emis"
