@@ -14,7 +14,6 @@ const state = {
   regions: [
     "ABAQULUSI",
     "ETHEKWINI",
-    "KwaZulu Natal",
     "TO BE UPDATED",
     "UKHAHLAMBA",
     "UMGUNGUNDLOVU",
@@ -46,24 +45,28 @@ const mutations = {
 };
 
 const actions = {
-  async kznSchools({ commit }) {
-    const regions = [
-      { region: { _eq: "ETHEKWINI" } }
-      // { region: { _eq: "KwaZulu Natal" } }
-    ];
-    const phases = [
-      { phase: { _eq: "PRIMARY SCHOOL" } }
-      // { phase: { _eq: "PRE-PRIMARY SCHOOL" } }
-    ];
+  async kznSchools({ commit }, payload) {
+    //const selectedRegions = ["TO BE UPDATED"];
+    const parsedRegions = payload.regions.map(selection => {
+      return { region: { _eq: selection } };
+    });
+    const parsedPhases = payload.phases.map(selection => {
+      return { phase: { _eq: selection } };
+    });
+    //const regions = [{ region: { _eq: "ETHEKWINI" } }];
+    // const phases = [
+    // { phase: { _eq: "PRIMARY SCHOOL" } }
+    // { phase: { _eq: "PRE-PRIMARY SCHOOL" } }
+    // ];
     try {
       const response = await apollo.query({
         query: KZN_SCHOOLS_GPS,
-        // fetchPolicy: "no-cache" // Already got data persistence with Vuex Persist plus this is a huge array
+        fetchPolicy: "no-cache", // Already got data persistence with Vuex Persist plus this is a huge array
         variables: {
           regions: {
-            _or: regions,
+            _or: parsedRegions,
             _and: {
-              _or: phases
+              _or: parsedPhases
             }
           }
         }

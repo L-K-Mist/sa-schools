@@ -43,7 +43,6 @@ export const KZN_SCHOOLS_GPS = gql`
   "regions": {
     "_or": [
       {"region": {"_eq": "ETHEKWINI"}},
-      {"region": {"_eq": "KwaZulu Natal"}}
     ],
     "_and":
       {"_or":  [

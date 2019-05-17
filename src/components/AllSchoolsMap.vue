@@ -113,14 +113,17 @@ export default {
     LMarkerCluster: Vue2LeafletMarkerCluster,
     SchoolSearch
   },
-  mounted() {
-    this.$store.dispatch("kznSchools");
-    // if (!this.cases) {
-    //   console.log("Fetching online array of schools");
-    //   this.$store.dispatch("kznSchools");
-    // }
-    // this.$nextTick(() => {});
-  },
+  // mounted() {
+  //   this.$store.dispatch("kznSchools" , {
+  //       regions: this.selectedRegions,
+  //       phases: this.selectedPhases
+  //     });
+  //   // if (!this.cases) {
+  //   //   console.log("Fetching online array of schools");
+  //   //   this.$store.dispatch("kznSchools");
+  //   // }
+  //   // this.$nextTick(() => {});
+  // },
   data() {
     return {
       map: null,
