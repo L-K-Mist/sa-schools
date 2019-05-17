@@ -1,27 +1,31 @@
 <template>
   <div>
+    <h1 class="headline">What you're seeing</h1>
+    <br />
     <v-flex xs12>
       <p>
         This map uses publicly available data from
         <a
           href="https://www.education.gov.za/Programmes/EMIS/EMISDownloads.aspx"
-          target="blank"
+          target="_blank"
           >the Department of Basic Education</a
-        >. The data has been uploaded to a postgreSQL database, wrapped in
-        <a href="https://hasura.io/" target="blank">Hasura</a>
-        , as a GraphQL api. This statically-hosted, VueJs frontend; consumes
-        that public api. JAMStack-Style!! :)
+        >. The data has been uploaded to a postgreSQL database, with
+        <a href="https://hasura.io/" target="_blank">Hasura</a>
+        autogenerating a GraphQL api. This statically-hosted, VueJs frontend
+        that you see before you; consumes that public api. JAMStack-Style!! :)
       </p>
       <p>
-        To play with this School Data in the lovely GraphiQL sandbox, copy this
-        data's endpoint [https://schools.dev.welink.net.za/v1alpha1/graphql] and
+        To play with this School Data in a GraphiQL sandbox, copy this api's
+        endpoint
+        <strong>https://schools.dev.welink.net.za/v1alpha1/graphql</strong> and
         paste that into
         <a
           href="https://graphiql-online.com/"
           target="_blank"
           rel="noopener noreferrer"
           >GraphiQL-Online</a
-        >.
+        >. While getting your bearings with the data, CTRL + SPACE for
+        auto-suggest is your friend.
       </p>
       <p>
         My hope is that by making this data more publicly available we can make
@@ -32,6 +36,8 @@
         <li>More accurate</li>
       </ol>
     </v-flex>
+    <br />
+    <h1 class="headline">The Map</h1>
     <br />
     <p>
       Please refine your search criterion (keeping in mind there's more than
@@ -83,7 +89,6 @@
             value="ZULULAND"
             hide-details
           ></v-checkbox>
-          <p>{{ selectedRegions }}</p>
         </v-flex>
 
         <v-flex xs6>
@@ -124,9 +129,10 @@
             value="COMBINED SCHOOL"
             hide-details
           ></v-checkbox>
-          <p>{{ selectedPhases }}</p>
         </v-flex>
         <v-layout row justify-center>
+          <br />
+          <br />
           <v-btn @click="fetchSchools" dark large color="cyan">
             <v-icon dark>fa-map-marked-alt</v-icon>&nbsp; Place Markers
           </v-btn>
@@ -135,7 +141,6 @@
     </v-container>
   </div>
 </template>
-map-marked-alt style="position: relative; right: 0px; bottom: 0px"
 <script>
 export default {
   mounted() {

@@ -1,7 +1,7 @@
 <template>
   <div v-if="school">
     <v-layout row justify-center>
-      <v-dialog v-model="dialog" max-width="80vw">
+      <v-dialog v-model="dialog" max-width="600px">
         <v-card>
           <v-card-title class="headline grey lighten-2">
             <v-flex xs10>{{ school.name }}</v-flex>

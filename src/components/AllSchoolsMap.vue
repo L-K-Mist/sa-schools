@@ -50,6 +50,25 @@
           </l-map>
           <br />
         </v-layout>
+        <h1 class="headline">Closing Thoughts</h1>
+        <br />
+        <p>
+          Though far from finished I hope you can see the benefit of taking a
+          publicly available spreadsheet, and opening it up to the public and to
+          fellow developers.
+        </p>
+        <p>The method was fairly easy using the tools stated in the intro.</p>
+
+        <p>
+          Somewhat rough and wet (non-DRY) code is available on
+          <a
+            href="https://github.com/L-K-Mist/sa-schools"
+            target="_blank"
+            rel="noopener noreferrer"
+            >github</a
+          >
+          for your amusement.
+        </p>
       </v-container>
     </v-card>
   </v-layout>
@@ -113,17 +132,7 @@ export default {
     LMarkerCluster: Vue2LeafletMarkerCluster,
     SchoolSearch
   },
-  // mounted() {
-  //   this.$store.dispatch("kznSchools" , {
-  //       regions: this.selectedRegions,
-  //       phases: this.selectedPhases
-  //     });
-  //   // if (!this.cases) {
-  //   //   console.log("Fetching online array of schools");
-  //   //   this.$store.dispatch("kznSchools");
-  //   // }
-  //   // this.$nextTick(() => {});
-  // },
+
   data() {
     return {
       map: null,
