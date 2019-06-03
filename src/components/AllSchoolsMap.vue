@@ -117,6 +117,15 @@ const tileProviders = [
 ];
 export default {
   name: "example",
+  mounted() {
+    this.$nextTick(() => {
+      const map = this.$refs.map.mapObject;
+      console.log("TCL: mounted -> map", map);
+      map.on("dblclick", event => {
+        console.log("TCL: mounted -> event", event);
+      });
+    });
+  },
   components: {
     // VGeosearch,
     LMap,

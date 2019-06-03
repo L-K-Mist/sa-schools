@@ -97,3 +97,37 @@ export const LAT_LNG_FILTER = gql`
     }
   }
 `;
+
+/**
+query schools_around_pt($distance: Float!, $geo: geometry!)
+{
+  sa_schools(where: {location: {_st_d_within: {
+    distance: $distance,
+    from: $geo
+  }}}){
+    name
+    lat
+    lng
+  }
+}
+
+
+.. and the variables field
+{
+  "distance": 0.01,
+  "geo": {
+      "type": "Point",
+      "coordinates": [
+        18.489704,
+        -33.940894
+      ],
+      "crs": {
+        "type": "name",
+        "properties": {
+          "name": "EPSG:4326"
+        }
+      }
+    }
+}
+
+ */

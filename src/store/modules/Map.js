@@ -53,11 +53,7 @@ const actions = {
     const parsedPhases = payload.phases.map(selection => {
       return { phase: { _eq: selection } };
     });
-    //const regions = [{ region: { _eq: "ETHEKWINI" } }];
-    // const phases = [
-    // { phase: { _eq: "PRIMARY SCHOOL" } }
-    // { phase: { _eq: "PRE-PRIMARY SCHOOL" } }
-    // ];
+
     try {
       const response = await apollo.query({
         query: KZN_SCHOOLS_GPS,
