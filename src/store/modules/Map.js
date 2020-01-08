@@ -80,8 +80,8 @@ const actions = {
   async projectSchools({ commit }) {
     try {
       const response = await apollo.query({
-        query: PROJECT_SCHOOLS,
-        fetchPolicy: "no-cache" // Already got data persistence with Vuex Persist plus this is a huge array
+        query: PROJECT_SCHOOLS
+        // fetchPolicy: "no-cache" // Already got data persistence with Vuex Persist plus this is a huge array
       });
       console.log("TCL: getSchoolsKZN -> response", response.data.sa_schools);
       commit("kznSchools", response.data.sa_schools);
