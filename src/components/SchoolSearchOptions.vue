@@ -133,6 +133,12 @@
         <v-layout row justify-center>
           <br />
           <br />
+          <v-btn
+            @click="$store.dispatch('projectSchools')"
+            block
+            color="success"
+            >Show Me the Project Schools</v-btn
+          >
           <v-btn @click="fetchSchools" dark large color="cyan">
             <v-icon dark>fa-map-marked-alt</v-icon>&nbsp; Place Markers
           </v-btn>

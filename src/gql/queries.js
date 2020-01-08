@@ -36,6 +36,39 @@ export const KZN_SCHOOLS_GPS = gql`
     }
   }
 `;
+
+export const PROJECT_SCHOOLS = gql`
+  query {
+    sa_schools(
+      where: {
+        _or: [
+          { name: { _ilike: "%Nkabini%" } }
+          { name: { _ilike: "%Hemu%" } }
+          { name: { _ilike: "%Songozima%" } }
+          { name: { _ilike: "%Thulasizwe%" } }
+          { name: { _ilike: "%Zweliyazuza%" } }
+          { name: { _ilike: "%Sombongangani%" } }
+          { name: { _ilike: "%KwaMadlala%" } }
+          { name: { _ilike: "%Emaswazini%" } }
+          { name: { _ilike: "%Nkhokhwane%" } }
+          { name: { _ilike: "%Nhlambamasoka%" } }
+          { name: { _ilike: "%Lutho Primary%" } }
+        ]
+        _and: { region: { _eq: "UMGUNGUNDLOVU" } }
+      }
+      order_by: { name: asc }
+    ) {
+      name
+      location
+      phase
+      region
+      street_address
+      lat
+      lng
+      nat_emis
+    }
+  }
+`;
 /**
  EXAMPLE Variables for KZN_SCHOOLS_GPS
 
