@@ -1,38 +1,39 @@
 import gql from "graphql-tag";
 
 export const SCHOOL_BY_ID = gql`
-  query sa_schools($id: String!) {
-    sa_schools(where: { nat_emis: { _eq: $id } }) {
-      name
-      phase
-      nat_emis
-      students_count
-      is_no_fees
-      phone
-      province
-      region
-      suburb
-      street_address
-      postal_address
-      lat
-      lng
-      old_nat_emis
+  query schools($id: String!) {
+    rsa_schools_by_pk(NatEMIS: $id) {
+      Official_Institution_Name
+      Phase_PED
+      NatEMIS
+      Learners_2019
+      NoFeeSchool
+      Status
+      Telephone
+      Province
+      DistrictMunicipalityName
+      Suburb
+      StreetAddress
+      PostalAddress
+      NewLat
+      NewLong
+      OldNATEMIS
     }
   }
 `;
 
 export const KZN_SCHOOLS_GPS = gql`
-  query sa_schools($regions: sa_schools_bool_exp!) {
-    sa_schools_aggregate(where: $regions) {
+  query schools_filter($regions: rsa_schools_bool_exp!) {
+    rsa_schools_aggregate(where: $regions) {
       aggregate {
         count
       }
     }
-    sa_schools(where: $regions) {
-      name
-      lat
-      lng
-      nat_emis
+    rsa_schools(where: $regions) {
+      Official_Institution_Name
+      NewLat
+      NewLong
+      NatEMIS
     }
   }
 `;
