@@ -55,15 +55,14 @@ const actions = {
       return { DistrictMunicipalityName: { _ilike: selection } };
     });
     const parsedPhases = payload.phases.map((selection) => {
-      return { Phase_PED: { _ilike: selection } };
+      return { phase: { _ilike: selection } };
     });
-    debugger;
     try {
       const response = await apollo.query({
         query: KZN_SCHOOLS_GPS,
         fetchPolicy: "no-cache", // Already got data persistence with Vuex Persist plus this is a huge array
         variables: {
-          regions: {
+          searchLogic: {
             _or: parsedRegions,
             _and: {
               _or: parsedPhases,
@@ -71,7 +70,6 @@ const actions = {
           },
         },
       });
-      debugger;
       console.log("TCL: getSchoolsKZN -> response", response.data.rsa_schools);
       commit("kznSchools", response.data.rsa_schools);
     } catch (error) {

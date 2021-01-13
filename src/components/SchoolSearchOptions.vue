@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1 class="headline">What you're seeing</h1>
+    <h1 class="headline">
+      What you're seeing
+    </h1>
     <br />
     <v-flex xs12>
       <p>
@@ -37,7 +39,9 @@
       </ol>
     </v-flex>
     <br />
-    <h1 class="headline">The Map</h1>
+    <h1 class="headline">
+      The Map
+    </h1>
     <br />
     <p>
       Please refine your search criterion (keeping in mind there's more than
@@ -46,101 +50,108 @@
     <v-container grid-list-md>
       <v-layout row wrap>
         <v-flex xs6>
-          <h3 class="heading">Regions</h3>
+          <h3 class="heading">
+            Regions
+          </h3>
           <v-checkbox
             v-model="selectedRegions"
             label="Abaqulusi"
             value="ABAQULUSI"
             hide-details
-          ></v-checkbox>
+          />
           <v-checkbox
             v-model="selectedRegions"
             label="Ethekwini"
             value="ETHEKWINI"
             hide-details
-          ></v-checkbox>
+          />
           <v-checkbox
             v-model="selectedRegions"
             label="To Be Updated"
             value="TO BE UPDATED"
             hide-details
-          ></v-checkbox>
+          />
           <v-checkbox
             v-model="selectedRegions"
             label="Ukhahlamba"
             value="UKHAHLAMBA"
             hide-details
-          ></v-checkbox>
+          />
           <v-checkbox
             v-model="selectedRegions"
             label="Umgungundlovu"
             value="UMGUNGUNDLOVU"
             hide-details
-          ></v-checkbox>
+          />
           <v-checkbox
             v-model="selectedRegions"
             label="Vryheid"
             value="VRYHEID"
             hide-details
-          ></v-checkbox>
+          />
           <v-checkbox
             v-model="selectedRegions"
             label="Zululand"
             value="ZULULAND"
             hide-details
-          ></v-checkbox>
+          />
         </v-flex>
 
         <v-flex xs6>
-          <h3 class="heading">Learning Phases</h3>
+          <h3 class="heading">
+            Learning Phases
+          </h3>
           <v-checkbox
             v-model="selectedPhases"
             label="Special Needs School"
             value="SPECIAL NEEDS EDUCATION SCHOOL"
             hide-details
-          ></v-checkbox>
+          />
           <v-checkbox
             v-model="selectedPhases"
             label="Secondary School"
             value="SECONDARY SCHOOL"
             hide-details
-          ></v-checkbox>
+          />
           <v-checkbox
             v-model="selectedPhases"
             label="Primary School"
             value="PRIMARY SCHOOL"
             hide-details
-          ></v-checkbox>
+          />
           <v-checkbox
             v-model="selectedPhases"
             label="Pre-Primary School"
             value="PRE-PRIMARY SCHOOL"
             hide-details
-          ></v-checkbox>
+          />
           <v-checkbox
             v-model="selectedPhases"
             label="Intermediate School"
             value="INTERMEDIATE SCHOOL"
             hide-details
-          ></v-checkbox>
+          />
           <v-checkbox
             v-model="selectedPhases"
             label="Combined School"
             value="COMBINED SCHOOL"
             hide-details
-          ></v-checkbox>
+          />
         </v-flex>
         <v-layout row justify-center>
           <br />
           <br />
           <v-btn
-            @click="$store.dispatch('projectSchools')"
             block
             color="success"
-            >Show Me the Project Schools</v-btn
+            @click="$store.dispatch('projectSchools')"
           >
-          <v-btn @click="fetchSchools" dark large color="cyan">
-            <v-icon dark>fa-map-marked-alt</v-icon>&nbsp; Place Markers
+            Show Me the Project Schools
+          </v-btn>
+          <v-btn dark large color="cyan" @click="fetchSchools">
+            <v-icon dark>
+              fa-map-marked-alt </v-icon
+            >&nbsp; Place Markers
           </v-btn>
         </v-layout>
       </v-layout>
@@ -149,27 +160,27 @@
 </template>
 <script>
 export default {
-  mounted() {
-    this.$store.dispatch("kznSchools", {
-      regions: this.selectedRegions,
-      phases: this.selectedPhases
-    });
-  },
   data() {
     return {
       selectedRegions: ["ETHEKWINI", "ZULULAND"],
-      selectedPhases: ["SECONDARY SCHOOL"]
+      selectedPhases: ["SECONDARY SCHOOL"],
     };
   },
   computed: {},
+  mounted() {
+    this.$store.dispatch("kznSchools", {
+      regions: this.selectedRegions,
+      phases: this.selectedPhases,
+    });
+  },
   methods: {
     fetchSchools() {
       this.$store.dispatch("kznSchools", {
         regions: this.selectedRegions,
-        phases: this.selectedPhases
+        phases: this.selectedPhases,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
