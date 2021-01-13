@@ -22,7 +22,7 @@ export const SCHOOL_BY_ID = gql`
   }
 `;
 
-export const KZN_SCHOOLS_GPS = gql`
+export const ALL_SCHOOLS = gql`
   query schools_filter($searchLogic: rsa_schools_bool_exp!) {
     rsa_schools_aggregate(where: $searchLogic) {
       aggregate {
@@ -67,54 +67,6 @@ export const PROJECT_SCHOOLS = gql`
       lat
       lng
       nat_emis
-    }
-  }
-`;
-/**
- EXAMPLE Variables for KZN_SCHOOLS_GPS
-
- {
-  "regions": {
-    "_or": [
-      {"region": {"_eq": "ETHEKWINI"}},
-    ],
-    "_and":
-      {"_or":  [
-        {"phase": {"_eq": "PRIMARY SCHOOL"}},
-        {"phase": {"_eq": "PRE-PRIMARY SCHOOL"}}
-      ]}
-
-  }
-}
- */
-
-export const SCHOOLS_BY_REGION = gql`
-  query sa_schools($region: String!) {
-    sa_schools_aggregate(
-      where: {
-        _and: [{ _not: { lat: { _eq: "0" } } }, { region: { _eq: $region } }]
-      }
-    ) {
-      aggregate {
-        count
-      }
-    }
-
-    sa_schools(
-      where: {
-        _and: [
-          { _not: { lat: { _eq: "0" } } }
-          { region: { _eq: $region } }
-          { name: { _eq: "SABUYAZE SECONDARY SCHOOL" } }
-        ]
-      }
-    ) {
-      region
-      name
-      lat
-      students_count
-      nat_emis
-      suburb
     }
   }
 `;

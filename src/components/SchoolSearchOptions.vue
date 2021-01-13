@@ -149,9 +149,7 @@
             Show Me the Project Schools
           </v-btn>
           <v-btn dark large color="cyan" @click="fetchSchools">
-            <v-icon dark>
-              fa-map-marked-alt </v-icon
-            >&nbsp; Place Markers
+            <v-icon dark> fa-map-marked-alt </v-icon>&nbsp; Place Markers
           </v-btn>
         </v-layout>
       </v-layout>
@@ -168,10 +166,13 @@ export default {
   },
   computed: {},
   mounted() {
-    this.$store.dispatch("kznSchools", {
-      regions: this.selectedRegions,
-      phases: this.selectedPhases,
-    });
+    // this.$store.dispatch("kznSchools", {
+    //   regions: this.selectedRegions,
+    //   phases: this.selectedPhases,
+    // });
+    setTimeout(() => {
+      this.$store.dispatch("kznSchools");
+    }, 1000);
   },
   methods: {
     fetchSchools() {

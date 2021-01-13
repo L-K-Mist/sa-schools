@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar scrollOffScreen app>
+    <v-toolbar scroll-off-screen app>
       <v-toolbar-title class="headline text-uppercase"
         >South African Schools Data</v-toolbar-title
       >
@@ -22,6 +22,6 @@ export default {
     return {
       //
     };
-  }
+  },
 };
 </script>

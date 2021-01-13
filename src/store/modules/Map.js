@@ -1,9 +1,5 @@
 import apollo from "@/apollo";
-import {
-  KZN_SCHOOLS_GPS,
-  SCHOOL_BY_ID,
-  PROJECT_SCHOOLS,
-} from "@/gql/queries.js";
+import { ALL_SCHOOLS, SCHOOL_BY_ID, PROJECT_SCHOOLS } from "@/gql/queries.js";
 
 const state = {
   markerPosition: { lat: -28.63324560499325, lng: 30.827636718750004 },
