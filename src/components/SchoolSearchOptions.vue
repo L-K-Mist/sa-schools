@@ -166,13 +166,10 @@ export default {
   },
   computed: {},
   mounted() {
-    // this.$store.dispatch("kznSchools", {
-    //   regions: this.selectedRegions,
-    //   phases: this.selectedPhases,
-    // });
-    setTimeout(() => {
-      this.$store.dispatch("kznSchools");
-    }, 1000);
+    this.$store.dispatch("kznSchools", {
+      regions: this.selectedRegions,
+      phases: this.selectedPhases,
+    });
   },
   methods: {
     fetchSchools() {

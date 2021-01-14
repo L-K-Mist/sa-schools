@@ -21,14 +21,19 @@ export const SCHOOL_BY_ID = gql`
     }
   }
 `;
-
 export const ALL_SCHOOLS = gql`
-  query schools_filter($searchLogic: rsa_schools_bool_exp!) {
-    rsa_schools_aggregate(where: $searchLogic) {
-      aggregate {
-        count
-      }
+  {
+    rsa_schools {
+      name
+      lat
+      lng
+      nat_emis
     }
+  }
+`;
+
+export const SCHOOLS_FILTER = gql`
+  query schools_filter($searchLogic: rsa_schools_bool_exp!) {
     rsa_schools(where: $searchLogic) {
       name
       lat

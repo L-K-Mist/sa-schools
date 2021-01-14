@@ -9,7 +9,10 @@
             class="mb-4"
             style="z-index: 2; height: 80vh; width: 90vw"
             :zoom="mapOptions.zoom"
-            :options="{ zoomControl: false, attributionControl: false }"
+            :options="{
+              zoomControl: false,
+              attributionControl: false,
+            }"
             :center="mapOptions.center"
             :min-zoom="mapOptions.minZoom"
             :max-zoom="mapOptions.maxZoom"

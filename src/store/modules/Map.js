@@ -1,5 +1,10 @@
 import apollo from "@/apollo";
-import { ALL_SCHOOLS, SCHOOL_BY_ID, PROJECT_SCHOOLS } from "@/gql/queries.js";
+import {
+  ALL_SCHOOLS,
+  SCHOOLS_FILTER,
+  SCHOOL_BY_ID,
+  PROJECT_SCHOOLS,
+} from "@/gql/queries.js";
 
 const state = {
   markerPosition: { lat: -28.63324560499325, lng: 30.827636718750004 },
@@ -54,8 +59,11 @@ const actions = {
       return { phase: { _ilike: selection } };
     });
     try {
+      // const response = await apollo.query({
+      //   query: ALL_SCHOOLS,
+      // });
       const response = await apollo.query({
-        query: KZN_SCHOOLS_GPS,
+        query: SCHOOLS_FILTER,
         fetchPolicy: "no-cache", // Already got data persistence with Vuex Persist plus this is a huge array
         variables: {
           searchLogic: {
