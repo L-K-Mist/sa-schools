@@ -1,34 +1,40 @@
 import gql from "graphql-tag";
 
 export const SCHOOL_BY_ID = gql`
-  query sa_schools($id: String!) {
-    sa_schools(where: { nat_emis: { _eq: $id } }) {
+  query schools($id: String!) {
+    rsa_schools_by_pk(NatEMIS: $id) {
       name
       phase
       nat_emis
-      students_count
-      is_no_fees
-      phone
-      province
-      region
-      suburb
-      street_address
-      postal_address
+      Learners_2019
+      NoFeeSchool
+      Status
+      Telephone
+      Province
+      DistrictMunicipalityName
+      Suburb
+      StreetAddress
+      PostalAddress
+      NewLat
+      NewLong
+      OldNATEMIS
+    }
+  }
+`;
+export const ALL_SCHOOLS = gql`
+  {
+    rsa_schools {
+      name
       lat
       lng
-      old_nat_emis
+      nat_emis
     }
   }
 `;
 
-export const KZN_SCHOOLS_GPS = gql`
-  query sa_schools($regions: sa_schools_bool_exp!) {
-    sa_schools_aggregate(where: $regions) {
-      aggregate {
-        count
-      }
-    }
-    sa_schools(where: $regions) {
+export const SCHOOLS_FILTER = gql`
+  query schools_filter($searchLogic: rsa_schools_bool_exp!) {
+    rsa_schools(where: $searchLogic) {
       name
       lat
       lng
@@ -66,54 +72,6 @@ export const PROJECT_SCHOOLS = gql`
       lat
       lng
       nat_emis
-    }
-  }
-`;
-/**
- EXAMPLE Variables for KZN_SCHOOLS_GPS
-
- {
-  "regions": {
-    "_or": [
-      {"region": {"_eq": "ETHEKWINI"}},
-    ],
-    "_and":
-      {"_or":  [
-        {"phase": {"_eq": "PRIMARY SCHOOL"}},
-        {"phase": {"_eq": "PRE-PRIMARY SCHOOL"}}
-      ]}
-
-  }
-}
- */
-
-export const SCHOOLS_BY_REGION = gql`
-  query sa_schools($region: String!) {
-    sa_schools_aggregate(
-      where: {
-        _and: [{ _not: { lat: { _eq: "0" } } }, { region: { _eq: $region } }]
-      }
-    ) {
-      aggregate {
-        count
-      }
-    }
-
-    sa_schools(
-      where: {
-        _and: [
-          { _not: { lat: { _eq: "0" } } }
-          { region: { _eq: $region } }
-          { name: { _eq: "SABUYAZE SECONDARY SCHOOL" } }
-        ]
-      }
-    ) {
-      region
-      name
-      lat
-      students_count
-      nat_emis
-      suburb
     }
   }
 `;
