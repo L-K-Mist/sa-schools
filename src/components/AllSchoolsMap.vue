@@ -162,7 +162,6 @@ export default {
   mounted() {
     this.$nextTick(() => {
       const map = this.$refs.map.mapObject;
-      console.log("TCL: mounted -> map", map);
       map.on("dblclick", (event) => {
         const { lat, lng } = event.latlng;
         this.$store.dispatch("fetchSchoolsNear", { lat, lng });
@@ -171,7 +170,6 @@ export default {
   },
   methods: {
     fetchSchool(id) {
-      console.log("TCL ~ fetchSchool ~ id", id);
       this.$store.dispatch("fetchSchool", id);
     },
   },

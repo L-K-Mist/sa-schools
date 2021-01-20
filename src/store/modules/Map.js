@@ -64,10 +64,10 @@ const actions = {
           },
         },
       });
-      console.log("TCL: getSchoolsKZN -> response", response.data.rsa_schools);
+      "TCL: getSchoolsKZN -> response", response.data.rsa_schools;
       commit("kznSchools", response.data.rsa_schools);
     } catch (error) {
-      console.log("TCL: getSchoolsKZN -> error", error);
+      console.error("TCL: getSchoolsKZN -> error", error);
     }
   },
   async projectSchools({ commit }) {
@@ -76,10 +76,9 @@ const actions = {
         query: PROJECT_SCHOOLS,
         // fetchPolicy: "no-cache" // Already got data persistence with Vuex Persist plus this is a huge array
       });
-      console.log("TCL: getSchoolsKZN -> response", response.data.sa_schools);
       commit("kznSchools", response.data.sa_schools);
     } catch (error) {
-      console.log("TCL: getSchoolsKZN -> error", error);
+      console.error("TCL: getSchoolsKZN -> error", error);
     }
   },
   async fetchSchool({ state }, payload) {
@@ -90,11 +89,10 @@ const actions = {
           id: payload,
         },
       });
-      console.log("TCL: fetchSchool -> response", response.data.sa_schools[0]);
       state.activeSchool = response.data.sa_schools[0];
       state.showSchool = true;
     } catch (error) {
-      console.log("TCL: fetchSchool -> error", error);
+      console.error("TCL: fetchSchool -> error", error);
     }
   },
   showSchool({ state }, payload) {
