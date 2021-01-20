@@ -39,16 +39,6 @@ const getters = {
   regions: (state) => state.regions,
 };
 
-const mutations = {
-  markerPosition: (state, payload) => {
-    state.markerPosition = payload;
-  },
-
-  kznSchools: (state, payload) => {
-    state.kznSchools = payload;
-  },
-};
-
 const actions = {
   async kznSchools({ commit }, payload) {
     //const selectedRegions = ["TO BE UPDATED"];
@@ -109,6 +99,31 @@ const actions = {
   },
   showSchool({ state }, payload) {
     state.showSchool = payload;
+  },
+  async fetchSchoolsNear({ state }, payload) {
+    const { lat, lng } = payload;
+    debugger;
+    // try {
+    //   const response = await apollo.query({
+    //     query: SCHOOLS_NEAR,
+    //     variables: {
+    //       lat,
+    //       lng,
+    //     },
+    //   });
+    // } catch (error) {
+    //   console.log("TCL ~ fetchSchoolsNear ~ error", error);
+    // }
+  },
+};
+
+const mutations = {
+  markerPosition: (state, payload) => {
+    state.markerPosition = payload;
+  },
+
+  kznSchools: (state, payload) => {
+    state.kznSchools = payload;
   },
 };
 

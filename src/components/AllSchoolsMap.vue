@@ -149,9 +149,9 @@ export default {
         imperial: false,
       },
       opacity: 0.8,
-      Positions: ["topleft", "topright", "bottomleft", "bottomright"],
+      // Positions: ["topleft", "topright", "bottomleft", "bottomright"],
       tileProviders: tileProviders,
-      stuff: [{ id: "s1", visible: true, markersVisible: true }],
+      // stuff: [{ id: "s1", visible: true, markersVisible: true }],
     };
   },
   computed: {
@@ -164,13 +164,14 @@ export default {
       const map = this.$refs.map.mapObject;
       console.log("TCL: mounted -> map", map);
       map.on("dblclick", (event) => {
-        console.log("TCL: mounted -> event", event);
+        const { lat, lng } = event.latlng;
+        this.$store.dispatch("fetchSchoolsNear", { lat, lng });
       });
     });
   },
   methods: {
     fetchSchool(id) {
-      console.log("TCL: fetchSchool -> id", id);
+      console.log("TCL ~ fetchSchool ~ id", id);
       this.$store.dispatch("fetchSchool", id);
     },
   },
