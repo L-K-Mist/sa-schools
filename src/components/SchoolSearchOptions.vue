@@ -51,11 +51,30 @@
       <v-layout row wrap>
         <v-flex xs6>
           <h3 class="heading">
+            Provinces
+          </h3>
+          <v-autocomplete
+            v-model="selectedProvinces"
+            :items="provinceOptions"
+            item-value="abbreviation"
+            item-text="name"
+            outlined
+            dense
+            chips
+            small-chips
+            label="Provinces"
+            multiple
+          ></v-autocomplete>
+        </v-flex>
+        <v-flex xs6>
+          <h3 class="heading">
             Regions
           </h3>
           <v-autocomplete
             v-model="selectedRegions"
             :items="regionOptions"
+            item-value="name"
+            item-text="name"
             outlined
             dense
             chips
@@ -69,47 +88,21 @@
           <h3 class="heading">
             Learning Phases
           </h3>
-          <v-checkbox
+          <v-autocomplete
             v-model="selectedPhases"
-            label="Special Needs School"
-            value="SPECIAL NEEDS EDUCATION SCHOOL"
-            hide-details
-          />
-          <v-checkbox
-            v-model="selectedPhases"
-            label="Secondary School"
-            value="SECONDARY SCHOOL"
-            hide-details
-          />
-          <v-checkbox
-            v-model="selectedPhases"
-            label="Primary School"
-            value="PRIMARY SCHOOL"
-            hide-details
-          />
-          <v-checkbox
-            v-model="selectedPhases"
-            label="Pre-Primary School"
-            value="PRE-PRIMARY SCHOOL"
-            hide-details
-          />
-          <v-checkbox
-            v-model="selectedPhases"
-            label="Intermediate School"
-            value="INTERMEDIATE SCHOOL"
-            hide-details
-          />
-          <v-checkbox
-            v-model="selectedPhases"
-            label="Combined School"
-            value="COMBINED SCHOOL"
-            hide-details
-          />
+            :items="phaseOptions"
+            outlined
+            dense
+            chips
+            small-chips
+            label="Phases"
+            multiple
+          ></v-autocomplete>
         </v-flex>
         <v-layout row justify-center>
           <br />
           <v-btn dark large color="cyan" @click="fetchSchools">
-            <v-icon dark> fa-map-marked-alt </v-icon>&nbsp; Place Markers
+            <v-icon class="mr-3" dark> mdi-map</v-icon>Place Markers
           </v-btn>
         </v-layout>
       </v-layout>
@@ -117,78 +110,35 @@
   </div>
 </template>
 <script>
+import { regions, provinces } from "@/helpers/Constants";
 export default {
   data() {
     return {
       selectedRegions: ["zululand"],
-      regionOptions: [
-        "Alfred Nzo",
-        "ALFRED NZO",
-        "Amajuba",
-        "Amathole",
-        "Bojanala",
-        "Buffalo City",
-        "Cacadu",
-        "Cape Winelands",
-        "CAPE WINELANDS",
-        "Capricorn",
-        "Central Karoo",
-        "CENTRAL KAROO",
-        "CENTRAL KAROO DISTRICT MUNICIPALITY",
-        "Chris Hani",
-        "City of Cape Town",
-        "CITY OF CAPE TOWN",
-        "City of Johannesburg",
-        "City of Tshwane",
-        "Dr Kenneth Kaunda",
-        "Dr Ruth Segomotsi Mompati",
-        "Eden",
-        "Ehlanzeni",
-        "Ekurhuleni",
-        "eThekwini",
-        "Fezile Dabi",
-        "Frances Baard",
-        "GARDEN ROUTE",
-        "Gert Sibande",
-        "GERT SIBANDE DISTRICT MUNICIPALITY",
-        "iLembe",
-        "Joe Gqabi",
-        "John Taolo Gaetsewe",
-        "Lejweleputswa",
-        "Mangaung",
-        "Mopani",
-        "Namakwa",
-        "Nelson Mandela Bay",
-        "Ngaka Modiri Molema",
-        "Nkangala",
-        "O.R.Tambo",
-        "Overberg",
-        "OVERBERG",
-        "Pixley ka Seme",
-        "SARAH BAARTMAN",
-        "Sedibeng",
-        "Sekhukhune",
-        "Sisonke",
-        "Thabo Mofutsanyane",
-        "Ugu",
-        "Umgungundlovu",
-        "Umkhanyakude",
-        "Umzinyathi",
-        "Uthukela",
-        "Uthungulu",
-        "Vhembe",
-        "Waterberg",
-        "West Coast",
-        "WEST COAST",
-        "West Rand",
-        "Xhariep",
-        "Z F Mgcawu",
-        "Zululand",
+      // regionOptions: regions,
+      selectedPhases: ["Secondary School"],
+      phaseOptions: [
+        "Combined School",
+        "Intermediate School",
+        "Pre-Primary School",
+        "Primary School",
+        "Secondary School",
+        "Special Needs School",
       ],
-      selectedPhases: ["SECONDARY SCHOOL"],
+      selectedProvinces: null,
+      provinceOptions: provinces,
     };
   },
-  computed: {},
+  computed: {
+    regionOptions() {
+      if (!this.selectedProvinces) return regions;
+
+      let filtered = regions.filter((region) =>
+        this.selectedProvinces.includes(region.province)
+      );
+      return filtered;
+    },
+  },
   mounted() {
     this.$store.dispatch("kznSchools", {
       regions: this.selectedRegions,

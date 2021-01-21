@@ -11,7 +11,7 @@
               dark
               @click="dialog = false"
             >
-              <v-icon medium>fa-window-close</v-icon>
+              <v-icon medium>mdi-close-thick</v-icon>
             </v-btn>
             <br />
             <div class="caption">
@@ -21,32 +21,30 @@
           <v-card-text>
             <v-container grid-list-md>
               <v-layout row wrap>
-                <v-flex>
-                  {{ school.phase }}
-                  <br />
+                <v-flex class="body-1">
                   {{ noFees(school.NoFeeSchool) }}
                   <br />
                   Has approximately {{ school.Learners_2019 }} students, with
                   {{ school.Educator_2019 }} teachers.
                   <br />
+                </v-flex>
+                <v-flex>
                   <v-icon
                     v-if="school.Telephone && school.Telephone.length > 1"
                     small
-                    >fa-phone</v-icon
+                    >mdi-phone</v-icon
                   >
                   {{
-                    school.Telephone[0] === 0
+                    school.Telephone[0] === "0"
                       ? school.Telephone
                       : "0" + school.Telephone
                   }}
-                </v-flex>
-                <v-flex>
-                  <v-icon small>fa-map-marker</v-icon>
+                  <br />
+                  <v-icon small>mdi-map-marker</v-icon>
                   {{ school.PostalAddress }}
                   <br />
-                  {{ school.StreetAddress }}
-                  <br />
-                  {{ school.Suburb }} {{ school.DistrictMunicipalityName }}
+                  {{ school.StreetAddress }},
+
                   {{ school.province }}
                 </v-flex>
               </v-layout>

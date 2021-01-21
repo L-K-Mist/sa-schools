@@ -45,7 +45,8 @@
                   <div class="body-1">{{ school.nat_emis }}</div>
                   <br />
                   <v-btn color="success" @click="fetchSchool(school.nat_emis)">
-                    <v-icon small>fa-info</v-icon>&nbsp; &nbsp; More info
+                    <v-icon class="mr-3">mdi-information</v-icon>&nbsp; &nbsp;
+                    More info
                   </v-btn>
                 </l-popup>
               </l-marker>
