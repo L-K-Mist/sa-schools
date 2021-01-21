@@ -79,26 +79,21 @@
 </template>
 
 <script>
+import Vue2LeafletMarkerCluster from "vue2-leaflet-markercluster";
+import "leaflet/dist/leaflet.css";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
+import "leaflet-defaulticon-compatibility";
 import {
   LMap,
   LTileLayer,
   LMarker,
-  // LLayerGroup,
-  // LTooltip,
   LPopup,
   LControlZoom,
   LControlAttribution,
   LControlScale,
   LControlLayers,
 } from "vue2-leaflet";
-import Vue2LeafletMarkerCluster from "vue2-leaflet-markercluster";
-// import { GeoSearchControl, EsriProvider } from "leaflet-geosearch";
-// import VGeosearch from "@/components/Vue2LeafletGeosearch";
-// import Glyph from "leaflet.icon.glyph";
-import "leaflet/dist/leaflet.css";
-import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
-import "leaflet-defaulticon-compatibility";
-// import "leaflet-geosearch/dist/style.css";
+
 import "leaflet-geosearch/assets/css/leaflet.css";
 
 import SchoolSearch from "@/components/SchoolSearchOptions";
@@ -180,5 +175,4 @@ export default {
 <style scoped>
 @import "~leaflet.markercluster/dist/MarkerCluster.css";
 @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
-@import "~leaflet/dist/leaflet.css";
 </style>
