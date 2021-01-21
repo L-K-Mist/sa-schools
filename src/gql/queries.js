@@ -2,22 +2,22 @@ import gql from "graphql-tag";
 
 export const SCHOOL_BY_ID = gql`
   query schools($id: String!) {
-    rsa_schools_by_pk(NatEMIS: $id) {
+    rsa_schools_by_pk(nat_emis: $id) {
       name
       phase
       nat_emis
       Learners_2019
+      Educator_2019
       NoFeeSchool
       Status
       Telephone
-      Province
+      province
       DistrictMunicipalityName
       Suburb
       StreetAddress
       PostalAddress
-      NewLat
-      NewLong
-      OldNATEMIS
+      lat
+      lng
     }
   }
 `;

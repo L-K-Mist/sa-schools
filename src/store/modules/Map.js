@@ -89,7 +89,8 @@ const actions = {
           id: payload,
         },
       });
-      state.activeSchool = response.data.sa_schools[0];
+      state.activeSchool = response.data.rsa_schools_by_pk;
+      console.log("TCL - fetchSchool - state.activeSchool", state.activeSchool);
       state.showSchool = true;
     } catch (error) {
       console.error("TCL: fetchSchool -> error", error);
@@ -100,7 +101,6 @@ const actions = {
   },
   async fetchSchoolsNear({ state }, payload) {
     const { lat, lng } = payload;
-    debugger;
     // try {
     //   const response = await apollo.query({
     //     query: SCHOOLS_NEAR,

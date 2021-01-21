@@ -22,26 +22,32 @@
             <v-container grid-list-md>
               <v-layout row wrap>
                 <v-flex>
-                  {{ school.is_no_fees == "YES" ? "A No-Fees School" : "" }}
+                  {{ school.phase }}
                   <br />
-                  Number of Students: {{ school.students_count }}
+                  {{ noFees(school.NoFeeSchool) }}
                   <br />
+                  Has approximately {{ school.Learners_2019 }} students, with
+                  {{ school.Educator_2019 }} teachers.
+                  <br />
+                  <v-icon
+                    v-if="school.Telephone && school.Telephone.length > 1"
+                    small
+                    >fa-phone</v-icon
+                  >
                   {{
-                    school.nat_emis !== school.old_nat_emis
-                      ? `Previous Emis Code: ${school.old_nat_emis}`
-                      : ""
+                    school.Telephone[0] === 0
+                      ? school.Telephone
+                      : "0" + school.Telephone
                   }}
-                  <br />
-                  <v-icon v-if="school.phone.length > 1" small>fa-phone</v-icon>
-                  {{ school.phone }}
                 </v-flex>
                 <v-flex>
                   <v-icon small>fa-map-marker</v-icon>
-                  {{ school.postal_address }}
+                  {{ school.PostalAddress }}
                   <br />
-                  {{ school.street_address }}
+                  {{ school.StreetAddress }}
                   <br />
-                  {{ school.suburb }} {{ school.region }} {{ school.province }}
+                  {{ school.Suburb }} {{ school.DistrictMunicipalityName }}
+                  {{ school.province }}
                 </v-flex>
               </v-layout>
             </v-container>
@@ -64,9 +70,34 @@ export default {
       },
       set(bool) {
         this.$store.dispatch("showSchool", bool);
+      },
+    },
+  },
+  methods: {
+    noFees(oneOfSeveralPossibilities) {
+      if (
+        !oneOfSeveralPossibilities ||
+        oneOfSeveralPossibilities === "NOT APPLICABLE"
+      ) {
+        // Return early so that the fact that "not applicable" does include "no" can't dirty the results.
+        return "Not Known";
       }
-    }
-  }
+      const _oneOfSeveralPossibilities = oneOfSeveralPossibilities.toLowerCase();
+      if (
+        _oneOfSeveralPossibilities.includes("no") ||
+        _oneOfSeveralPossibilities === "n"
+      ) {
+        return "Requires School Fees";
+      }
+      if (
+        _oneOfSeveralPossibilities.includes("yes") ||
+        _oneOfSeveralPossibilities === "n"
+      ) {
+        return "Is a No Fees School";
+      }
+      return "No Fees School: Not Known";
+    },
+  },
 };
 </script>
 
