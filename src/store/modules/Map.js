@@ -46,7 +46,7 @@ const actions = {
       return { DistrictMunicipalityName: { _ilike: selection } };
     });
     const parsedPhases = payload.phases.map((selection) => {
-      return { phase: { _ilike: selection } };
+      return { phase: { _ilike: `%${selection.split(" ")[0]}%` } }; // Some wrangling so that for example combined and combined school would both return well-formed.
     });
     try {
       // const response = await apollo.query({
@@ -66,17 +66,6 @@ const actions = {
       });
       "TCL: getSchoolsKZN -> response", response.data.rsa_schools;
       commit("kznSchools", response.data.rsa_schools);
-    } catch (error) {
-      console.error("TCL: getSchoolsKZN -> error", error);
-    }
-  },
-  async projectSchools({ commit }) {
-    try {
-      const response = await apollo.query({
-        query: PROJECT_SCHOOLS,
-        // fetchPolicy: "no-cache" // Already got data persistence with Vuex Persist plus this is a huge array
-      });
-      commit("kznSchools", response.data.sa_schools);
     } catch (error) {
       console.error("TCL: getSchoolsKZN -> error", error);
     }

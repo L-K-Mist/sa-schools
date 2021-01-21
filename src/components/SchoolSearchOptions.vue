@@ -53,48 +53,16 @@
           <h3 class="heading">
             Regions
           </h3>
-          <v-checkbox
+          <v-autocomplete
             v-model="selectedRegions"
-            label="Abaqulusi"
-            value="ABAQULUSI"
-            hide-details
-          />
-          <v-checkbox
-            v-model="selectedRegions"
-            label="Ethekwini"
-            value="ETHEKWINI"
-            hide-details
-          />
-          <v-checkbox
-            v-model="selectedRegions"
-            label="To Be Updated"
-            value="TO BE UPDATED"
-            hide-details
-          />
-          <v-checkbox
-            v-model="selectedRegions"
-            label="Ukhahlamba"
-            value="UKHAHLAMBA"
-            hide-details
-          />
-          <v-checkbox
-            v-model="selectedRegions"
-            label="Umgungundlovu"
-            value="UMGUNGUNDLOVU"
-            hide-details
-          />
-          <v-checkbox
-            v-model="selectedRegions"
-            label="Vryheid"
-            value="VRYHEID"
-            hide-details
-          />
-          <v-checkbox
-            v-model="selectedRegions"
-            label="Zululand"
-            value="ZULULAND"
-            hide-details
-          />
+            :items="regionOptions"
+            outlined
+            dense
+            chips
+            small-chips
+            label="Region"
+            multiple
+          ></v-autocomplete>
         </v-flex>
 
         <v-flex xs6>
@@ -140,14 +108,6 @@
         </v-flex>
         <v-layout row justify-center>
           <br />
-          <br />
-          <v-btn
-            block
-            color="success"
-            @click="$store.dispatch('projectSchools')"
-          >
-            Show Me the Project Schools
-          </v-btn>
           <v-btn dark large color="cyan" @click="fetchSchools">
             <v-icon dark> fa-map-marked-alt </v-icon>&nbsp; Place Markers
           </v-btn>
@@ -160,7 +120,72 @@
 export default {
   data() {
     return {
-      selectedRegions: ["ETHEKWINI", "ZULULAND"],
+      selectedRegions: [],
+      regionOptions: [
+        "Alfred Nzo",
+        "ALFRED NZO",
+        "Amajuba",
+        "Amathole",
+        "Bojanala",
+        "Buffalo City",
+        "Cacadu",
+        "Cape Winelands",
+        "CAPE WINELANDS",
+        "Capricorn",
+        "Central Karoo",
+        "CENTRAL KAROO",
+        "CENTRAL KAROO DISTRICT MUNICIPALITY",
+        "Chris Hani",
+        "City of Cape Town",
+        "CITY OF CAPE TOWN",
+        "City of Johannesburg",
+        "City of Tshwane",
+        "Dr Kenneth Kaunda",
+        "Dr Ruth Segomotsi Mompati",
+        "Eden",
+        "Ehlanzeni",
+        "Ekurhuleni",
+        "eThekwini",
+        "Fezile Dabi",
+        "Frances Baard",
+        "GARDEN ROUTE",
+        "Gert Sibande",
+        "GERT SIBANDE DISTRICT MUNICIPALITY",
+        "iLembe",
+        "Joe Gqabi",
+        "John Taolo Gaetsewe",
+        "Lejweleputswa",
+        "Mangaung",
+        "Mopani",
+        "Namakwa",
+        "Nelson Mandela Bay",
+        "Ngaka Modiri Molema",
+        "Nkangala",
+        "O.R.Tambo",
+        "Overberg",
+        "OVERBERG",
+        "Pixley ka Seme",
+        "SARAH BAARTMAN",
+        "Sedibeng",
+        "Sekhukhune",
+        "Sisonke",
+        "Thabo Mofutsanyane",
+        "Ugu",
+        "Umgungundlovu",
+        "Umkhanyakude",
+        "Umzinyathi",
+        "Uthukela",
+        "Uthungulu",
+        "Vhembe",
+        "Waterberg",
+        "West Coast",
+        "WEST COAST",
+        "West Rand",
+        "Xhariep",
+        "Z F Mgcawu",
+        "Zululand",
+        null,
+      ],
       selectedPhases: ["SECONDARY SCHOOL"],
     };
   },
@@ -170,6 +195,9 @@ export default {
       regions: this.selectedRegions,
       phases: this.selectedPhases,
     });
+    console.log(
+      this.regionOptions.map((region) => region.DistrictMunicipalityName)
+    );
   },
   methods: {
     fetchSchools() {

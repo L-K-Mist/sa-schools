@@ -43,40 +43,6 @@ export const SCHOOLS_FILTER = gql`
   }
 `;
 
-export const PROJECT_SCHOOLS = gql`
-  query {
-    sa_schools(
-      where: {
-        _or: [
-          { name: { _ilike: "%Nkabini%" } }
-          { name: { _ilike: "%Hemu%" } }
-          { name: { _ilike: "%Songozima%" } }
-          { name: { _ilike: "%Thulasizwe%" } }
-          { name: { _ilike: "%Zweliyazuza%" } }
-          { name: { _ilike: "%Sombongangani%" } }
-          { name: { _ilike: "%KwaMadlala%" } }
-          { name: { _ilike: "%Emaswazini%" } }
-          { name: { _ilike: "%Nkhokhwane%" } }
-          { name: { _ilike: "%Nhlambamasoka%" } }
-          { name: { _ilike: "%Lutho Primary%" } }
-        ]
-        _and: { region: { _eq: "UMGUNGUNDLOVU" } }
-      }
-      order_by: { name: asc }
-    ) {
-      name
-      location
-      phase
-      region
-      street_address
-      lat
-      lng
-      nat_emis
-    }
-  }
-`;
-
-// Saving this for now. It works in GraphiQL
 export const LAT_LNG_FILTER = gql`
   query sa_schools_aggregate($lat: Float!, $lng: Float!) {
     sa_schools_aggregate(
