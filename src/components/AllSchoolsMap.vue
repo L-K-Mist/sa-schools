@@ -79,10 +79,9 @@
 </template>
 
 <script>
-import Vue2LeafletMarkerCluster from "vue2-leaflet-markercluster";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
-import "leaflet-defaulticon-compatibility";
+
 import {
   LMap,
   LTileLayer,
@@ -93,8 +92,10 @@ import {
   LControlScale,
   LControlLayers,
 } from "vue2-leaflet";
+import "leaflet-defaulticon-compatibility";
+import Vue2LeafletMarkerCluster from "vue2-leaflet-markercluster";
 
-import "leaflet-geosearch/assets/css/leaflet.css";
+// import "leaflet-geosearch/assets/css/leaflet.css";
 
 import SchoolSearch from "@/components/SchoolSearchOptions";
 
