@@ -53,7 +53,7 @@
           <h3 class="heading">
             Regions
           </h3>
-          <v-autocomplete
+          <!-- <v-autocomplete
             v-model="selectedRegions"
             :items="regionOptions"
             outlined
@@ -62,7 +62,7 @@
             small-chips
             label="Region"
             multiple
-          ></v-autocomplete>
+          ></v-autocomplete> -->
         </v-flex>
 
         <v-flex xs6>
@@ -195,9 +195,6 @@ export default {
       regions: this.selectedRegions,
       phases: this.selectedPhases,
     });
-    console.log(
-      this.regionOptions.map((region) => region.DistrictMunicipalityName)
-    );
   },
   methods: {
     fetchSchools() {
