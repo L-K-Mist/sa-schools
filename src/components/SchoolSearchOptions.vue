@@ -53,7 +53,7 @@
           <h3 class="heading">
             Regions
           </h3>
-          <!-- <v-autocomplete
+          <v-autocomplete
             v-model="selectedRegions"
             :items="regionOptions"
             outlined
@@ -62,7 +62,7 @@
             small-chips
             label="Region"
             multiple
-          ></v-autocomplete> -->
+          ></v-autocomplete>
         </v-flex>
 
         <v-flex xs6>
@@ -120,7 +120,7 @@
 export default {
   data() {
     return {
-      selectedRegions: [],
+      selectedRegions: ["zululand"],
       regionOptions: [
         "Alfred Nzo",
         "ALFRED NZO",
@@ -184,7 +184,6 @@ export default {
         "Xhariep",
         "Z F Mgcawu",
         "Zululand",
-        null,
       ],
       selectedPhases: ["SECONDARY SCHOOL"],
     };

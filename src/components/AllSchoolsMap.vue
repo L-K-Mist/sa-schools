@@ -97,9 +97,9 @@ import Vue2LeafletMarkerCluster from "vue2-leaflet-markercluster";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
 import "leaflet-defaulticon-compatibility";
-import "leaflet-geosearch/dist/style.css";
+// import "leaflet-geosearch/dist/style.css";
 import "leaflet-geosearch/assets/css/leaflet.css";
-// //
+
 import SchoolSearch from "@/components/SchoolSearchOptions";
 
 const tileProviders = [

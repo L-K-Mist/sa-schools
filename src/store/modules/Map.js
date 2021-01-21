@@ -1,10 +1,5 @@
 import apollo from "@/apollo";
-import {
-  ALL_SCHOOLS,
-  SCHOOLS_FILTER,
-  SCHOOL_BY_ID,
-  PROJECT_SCHOOLS,
-} from "@/gql/queries.js";
+import { ALL_SCHOOLS, SCHOOLS_FILTER, SCHOOL_BY_ID } from "@/gql/queries.js";
 
 const state = {
   markerPosition: { lat: -28.63324560499325, lng: 30.827636718750004 },
@@ -64,7 +59,7 @@ const actions = {
           },
         },
       });
-      "TCL: getSchoolsKZN -> response", response.data.rsa_schools;
+      console.log("TCL: getSchoolsKZN -> response", response.data.rsa_schools);
       commit("kznSchools", response.data.rsa_schools);
     } catch (error) {
       console.error("TCL: getSchoolsKZN -> error", error);

@@ -43,6 +43,30 @@ export const SCHOOLS_FILTER = gql`
   }
 `;
 
+export const SCHOOLS_NEARBY = gql`
+  query MyQuery($var: rsa_schools_bool_exp!) {
+    rsa_schools_aggregate(where: $var) {
+      aggregate {
+        count
+      }
+    }
+    rsa_schools(
+      where: {
+        _and: [
+          { lat: { _gte: -29.44493684210245 } }
+          { lat: { _lte: -27.44493684210245 } }
+          { lng: { _gte: 29.71090698242188 } }
+          { lng: { _lte: 31.71090698242188 } }
+        ]
+      }
+    ) {
+      name
+      lat
+      lng
+    }
+  }
+`;
+
 export const LAT_LNG_FILTER = gql`
   query sa_schools_aggregate($lat: Float!, $lng: Float!) {
     sa_schools_aggregate(
