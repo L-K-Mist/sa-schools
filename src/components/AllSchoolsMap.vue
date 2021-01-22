@@ -138,10 +138,11 @@ export default {
     return {
       map: null,
       marker: null,
+      // Start the map zoomed out over SA.
       mapOptions: {
-        center: this.$store.getters.markerPosition,
+        center: { lat: -28.552743254412608, lng: 24.488525390625 },
+        zoom: 6,
         options: { zoomControl: false, attributionControl: true },
-        zoom: 9,
         minZoom: 1,
         maxZoom: 20,
         attributionPosition: "bottomright",
@@ -150,9 +151,7 @@ export default {
         imperial: false,
       },
       opacity: 0.8,
-      // Positions: ["topleft", "topright", "bottomleft", "bottomright"],
       tileProviders: tileProviders,
-      // stuff: [{ id: "s1", visible: true, markersVisible: true }],
     };
   },
   computed: {

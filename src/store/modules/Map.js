@@ -2,7 +2,7 @@ import apollo from "@/apollo";
 import { ALL_SCHOOLS, SCHOOLS_FILTER, SCHOOL_BY_ID } from "@/gql/queries.js";
 
 const state = {
-  markerPosition: { lat: -28.63324560499325, lng: 30.827636718750004 },
+  markerPosition: { lat: -28.552743254412608, lng: 24.488525390625 },
   // phases: [
   //   "Combined School",
   //   "Intermediate School",
@@ -85,6 +85,7 @@ const actions = {
   },
   async fetchSchoolsNear({ state }, payload) {
     const { lat, lng } = payload;
+    console.log("fetchSchoolsNear - payload", payload);
     // try {
     //   const response = await apollo.query({
     //     query: SCHOOLS_NEAR,
@@ -97,6 +98,10 @@ const actions = {
     //   console.log("TCL ~ fetchSchoolsNear ~ error", error);
     // }
   },
+  setUserLocation({ commit }, payload) {
+    const { latitude: lat, longitude: lng } = payload;
+    commit("setUserLocation", { lat, lng });
+  },
 };
 
 const mutations = {
@@ -106,6 +111,9 @@ const mutations = {
 
   kznSchools: (state, payload) => {
     state.kznSchools = payload;
+  },
+  setUserLocation: (state, payload) => {
+    state.markerPosition = payload;
   },
 };
 

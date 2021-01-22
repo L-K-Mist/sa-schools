@@ -19,8 +19,8 @@
       <p>
         To play with this School Data in a GraphiQL sandbox, copy this api's
         endpoint
-        <strong>https://schools.dev.welink.net.za/v1alpha1/graphql</strong> and
-        paste that into
+        <strong>https://sa-schools-data.dev.welink.net.za/v1/graphql</strong>
+        and paste that into
         <a
           href="https://graphiql-online.com/"
           target="_blank"
