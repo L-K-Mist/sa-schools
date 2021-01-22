@@ -60,11 +60,11 @@
 export default {
   computed: {
     school() {
-      return this.$store.getters.activeSchool;
+      return this.$store.state.Map.activeSchool;
     },
     dialog: {
       get() {
-        return this.$store.getters.showSchool;
+        return this.$store.state.Map.showSchool;
       },
       set(bool) {
         this.$store.dispatch("showSchool", bool);

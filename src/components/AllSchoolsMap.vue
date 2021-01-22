@@ -136,12 +136,11 @@ export default {
 
   data() {
     return {
-      map: null,
       marker: null,
       // Start the map zoomed out over SA.
       mapOptions: {
         center: { lat: -28.552743254412608, lng: 24.488525390625 },
-        zoom: 6,
+        zoom: 5,
         options: { zoomControl: false, attributionControl: true },
         minZoom: 1,
         maxZoom: 20,
@@ -156,16 +155,24 @@ export default {
   },
   computed: {
     schools() {
-      return this.$store.getters.kznSchools;
+      return this.$store.state.Map.kznSchools;
+    },
+    map: {
+      get() {
+        return this.$store.state.Map.map;
+      },
+      set(newVal) {
+        this.$store.dispatch("setMap", newVal);
+      },
     },
   },
   mounted() {
     this.$nextTick(() => {
-      const map = this.$refs.map.mapObject;
-      map.on("dblclick", (event) => {
-        const { lat, lng } = event.latlng;
-        this.$store.dispatch("fetchSchoolsNear", { lat, lng });
-      });
+      this.map = this.$refs.map.mapObject;
+      // map.on("dblclick", (event) => {
+      //   const { lat, lng } = event.latlng;
+      //   this.$store.dispatch("fetchSchoolsNear", { lat, lng });
+      // });
     });
   },
   methods: {

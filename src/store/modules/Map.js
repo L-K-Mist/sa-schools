@@ -1,7 +1,8 @@
 import apollo from "@/apollo";
-import { ALL_SCHOOLS, SCHOOLS_FILTER, SCHOOL_BY_ID } from "@/gql/queries.js";
+import { SCHOOLS_NEARBY, SCHOOLS_FILTER, SCHOOL_BY_ID } from "@/gql/queries.js";
 
 const state = {
+  map: null,
   markerPosition: { lat: -28.552743254412608, lng: 24.488525390625 },
   // phases: [
   //   "Combined School",
@@ -26,27 +27,33 @@ const state = {
 };
 
 const getters = {
-  markerPosition: (state) => state.markerPosition,
-  kznSchools: (state) => state.kznSchools,
-  activeSchool: (state) => state.activeSchool,
-  showSchool: (state) => state.showSchool,
-  phases: (state) => state.phases,
-  regions: (state) => state.regions,
+  nearbyRange: (state) => {
+    const { lat, lng } = state.markerPosition;
+    const searchWideness = 0.4;
+    return {
+      _and: [
+        { lat: { _gte: lat - searchWideness } },
+        { lat: { _lte: lat + searchWideness } },
+        { lng: { _gte: lng - searchWideness } },
+        { lng: { _lte: lng + searchWideness } },
+      ],
+    };
+  },
 };
 
 const actions = {
+  setMap({ commit }, payload) {
+    commit("setMap", payload);
+  },
   async kznSchools({ commit }, payload) {
     //const selectedRegions = ["TO BE UPDATED"];
     const parsedRegions = payload.regions.map((selection) => {
-      return { DistrictMunicipalityName: { _ilike: selection } };
+      return { DistrictMunicipalityName: { _ilike: `%${selection}%` } };
     });
     const parsedPhases = payload.phases.map((selection) => {
       return { phase: { _ilike: `%${selection.split(" ")[0]}%` } }; // Some wrangling so that for example combined and combined school would both return well-formed.
     });
     try {
-      // const response = await apollo.query({
-      //   query: ALL_SCHOOLS,
-      // });
       const response = await apollo.query({
         query: SCHOOLS_FILTER,
         fetchPolicy: "no-cache", // Already got data persistence with Vuex Persist plus this is a huge array
@@ -83,34 +90,40 @@ const actions = {
   showSchool({ state }, payload) {
     state.showSchool = payload;
   },
-  async fetchSchoolsNear({ state }, payload) {
-    const { lat, lng } = payload;
-    console.log("fetchSchoolsNear - payload", payload);
-    // try {
-    //   const response = await apollo.query({
-    //     query: SCHOOLS_NEAR,
-    //     variables: {
-    //       lat,
-    //       lng,
-    //     },
-    //   });
-    // } catch (error) {
-    //   console.log("TCL ~ fetchSchoolsNear ~ error", error);
-    // }
+  async fetchSchoolsNear({ state, getters, commit }) {
+    try {
+      const response = await apollo.query({
+        query: SCHOOLS_NEARBY,
+        variables: {
+          nearbyRange: getters.nearbyRange,
+        },
+      });
+      commit("kznSchools", response.data.rsa_schools);
+    } catch (error) {
+      console.log("TCL ~ fetchSchoolsNear ~ error", error);
+    }
   },
   setUserLocation({ commit }, payload) {
     const { latitude: lat, longitude: lng } = payload;
     commit("setUserLocation", { lat, lng });
   },
+  setView({ state }, payload) {
+    const { lat, lng } = payload;
+    state.map.setView(payload, 7);
+  },
 };
 
 const mutations = {
+  setMap: (state, payload) => {
+    state.map = payload;
+  },
   markerPosition: (state, payload) => {
     state.markerPosition = payload;
   },
 
   kznSchools: (state, payload) => {
     state.kznSchools = payload;
+    console.log("state.kznSchools", state.kznSchools);
   },
   setUserLocation: (state, payload) => {
     state.markerPosition = payload;

@@ -23,17 +23,19 @@ export default {
     return {};
   },
   async mounted() {
-    // const response = await axios.get(
-    //   `https://api.ipregistry.co/?key=${process.env.VUE_APP_IP}&pretty=true&fields=location.city,location.latitude,location.longitude`
-    // );
-
-    // console.log("mounted - response", response);
-    // this.$store.dispatch("setUserLocation", response.data.location);
-    this.$store.dispatch("setUserLocation", {
+    const returnedVal = {
       city: "Jeffreys Bay",
       latitude: -33.89609,
       longitude: 24.86859,
-    });
+    };
+    await this.$store.dispatch("setUserLocation", returnedVal);
+    await this.$store.dispatch("fetchSchoolsNear");
+    setTimeout(() => {
+      this.$store.dispatch("setView", {
+        lat: returnedVal.latitude,
+        lng: returnedVal.longitude,
+      });
+    }, 2000);
   },
 };
 </script>
