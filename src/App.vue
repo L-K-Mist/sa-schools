@@ -24,7 +24,7 @@ export default {
   },
   async mounted() {
     const response = await axios.get(
-      `http://api.ipstack.com/check?access_key=${process.env.VUE_APP_IP}&fields=latitude,longitude,region_name,city`
+      `https://api.ipregistry.co/?key=${process.env.VUE_APP_IP}&pretty=true&fields=location.city,location.latitude,location.longitude`
     );
     console.log("mounted - response", response);
   },
