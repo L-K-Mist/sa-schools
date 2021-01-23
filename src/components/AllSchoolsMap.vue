@@ -3,7 +3,6 @@
     <v-card>
       <v-container grid-list-xs>
         <v-layout justify-center row wrap>
-          <school-search></school-search>
           <l-map
             ref="map"
             class="mb-4"
@@ -100,8 +99,6 @@ import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import "leaflet-defaulticon-compatibility";
 // import "leaflet-geosearch/dist/style.css";
 import "leaflet-geosearch/assets/css/leaflet.css";
-// //
-import SchoolSearch from "@/components/SchoolSearchOptions";
 
 const tileProviders = [
   {
@@ -131,7 +128,6 @@ export default {
     LControlScale,
     LControlLayers,
     LMarkerCluster: Vue2LeafletMarkerCluster,
-    SchoolSearch,
   },
 
   data() {

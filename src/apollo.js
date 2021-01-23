@@ -7,6 +7,7 @@ const apollo = new ApolloClient({
     uri: "https://sa-schools-data.dev.welink.net.za/v1/graphql",
   }),
   cache: new InMemoryCache(),
+  connectToDevTools: true,
 });
 
 export default apollo;

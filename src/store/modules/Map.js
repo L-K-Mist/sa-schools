@@ -24,6 +24,7 @@ const state = {
   kznSchools: null,
   activeSchool: null,
   showSchool: false,
+  loading: false,
 };
 
 const getters = {
@@ -66,7 +67,6 @@ const actions = {
           },
         },
       });
-      console.log("TCL: getSchoolsKZN -> response", response.data.rsa_schools);
       commit("kznSchools", response.data.rsa_schools);
     } catch (error) {
       console.error("TCL: getSchoolsKZN -> error", error);
@@ -81,7 +81,6 @@ const actions = {
         },
       });
       state.activeSchool = response.data.rsa_schools_by_pk;
-      console.log("TCL - fetchSchool - state.activeSchool", state.activeSchool);
       state.showSchool = true;
     } catch (error) {
       console.error("TCL: fetchSchool -> error", error);
@@ -91,6 +90,7 @@ const actions = {
     state.showSchool = payload;
   },
   async fetchSchoolsNear({ state, getters, commit }) {
+    state.loading = true;
     try {
       const response = await apollo.query({
         query: SCHOOLS_NEARBY,
@@ -99,8 +99,10 @@ const actions = {
         },
       });
       commit("kznSchools", response.data.rsa_schools);
+      state.loading = false;
     } catch (error) {
       console.log("TCL ~ fetchSchoolsNear ~ error", error);
+      state.loading = false;
     }
   },
   setUserLocation({ commit }, payload) {
