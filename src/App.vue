@@ -5,14 +5,18 @@
         >South African Schools Data</v-toolbar-title
       >
       <v-spacer></v-spacer>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-btn @click.stop="drawer = !drawer"
+        ><v-icon class="mr-3">mdi-map-search-outline</v-icon> Find
+        Schools</v-btn
+      >
     </v-app-bar>
     <v-navigation-drawer
       class="map-filter"
       v-model="drawer"
       right
-      absolute
+      app
       clipped
+      style="z-index: 500;"
     >
       <h3 color="grey">Search for Schools</h3>
       <v-autocomplete
@@ -105,7 +109,7 @@ export default {
     let response = { data: {} };
     try {
       // var response = await axios.get(
-      //   `https://api.ipregistry.co/?key=8rostuxfd16ju3&pretty=true&fields=location.city,location.latitude,location.longitude`
+      //   `https://api.ipregistry.co/?key=8rostuxfd16ju3&pretty=true&fields=ip,location.city,location.latitude,location.longitude`
       // );
       throw "error on purpose";
     } catch (error) {
@@ -125,7 +129,7 @@ export default {
         lat: returnedVal.latitude,
         lng: returnedVal.longitude,
       });
-    }, 2000);
+    }, 1000);
   },
   methods: {
     fetchSchools() {
@@ -140,9 +144,8 @@ export default {
 
 <style>
 .map-filter.v-navigation-drawer--clipped {
-  padding: 80px 30px;
+  padding: 20px 30px;
   width: 400px;
-  z-index: 3;
 }
 
 .main-toolbar .v-toolbar__content {

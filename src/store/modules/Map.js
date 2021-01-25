@@ -4,23 +4,6 @@ import { SCHOOLS_NEARBY, SCHOOLS_FILTER, SCHOOL_BY_ID } from "@/gql/queries.js";
 const state = {
   map: null,
   markerPosition: { lat: -28.552743254412608, lng: 24.488525390625 },
-  // phases: [
-  //   "Combined School",
-  //   "Intermediate School",
-  //   "Pre-Primary School",
-  //   "Primary School",
-  //   "Secondary School",
-  //   "Special Needs School",
-  // ],
-  // regions: [
-  //   "ABAQULUSI",
-  //   "ETHEKWINI",
-  //   "TO BE UPDATED",
-  //   "UKHAHLAMBA",
-  //   "UMGUNGUNDLOVU",
-  //   "VRYHEID",
-  //   "ZULULAND",
-  // ],
   kznSchools: null,
   activeSchool: null,
   showSchool: false,
