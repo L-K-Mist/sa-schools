@@ -118,7 +118,7 @@
                     rel="noopener noreferrer"
                     >github</a
                   >
-                  for your amusement.
+                  .
                 </p>
               </v-expansion-panel-content>
             </v-expansion-panel>
