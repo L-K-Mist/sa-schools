@@ -1,11 +1,17 @@
 <template>
   <v-app>
-    <v-app-bar style="z-index:999;" class="main-toolbar" scroll-off-screen app>
+    <v-app-bar
+      color="#aad3df"
+      style="z-index:999;"
+      class="main-toolbar"
+      scroll-off-screen
+      app
+    >
       <v-toolbar-title class="headline text-uppercase"
         >South African Schools Data</v-toolbar-title
       >
       <v-spacer></v-spacer>
-      <v-btn @click.stop="drawer = !drawer"
+      <v-btn color="#f2efe9" @click.stop="drawer = !drawer"
         ><v-icon class="mr-3">mdi-map-search-outline</v-icon> Find
         Schools</v-btn
       >
@@ -108,10 +114,10 @@ export default {
   async mounted() {
     let response = { data: {} };
     try {
-      // var response = await axios.get(
-      //   `https://api.ipregistry.co/?key=8rostuxfd16ju3&pretty=true&fields=ip,location.city,location.latitude,location.longitude`
-      // );
-      throw "error on purpose";
+      response = await axios.get(
+        `https://api.ipregistry.co/?key=8rostuxfd16ju3&pretty=true&fields=ip,location.city,location.latitude,location.longitude`
+      );
+      // throw "error on purpose";
     } catch (error) {
       // If the api lookup doesn't work at least send something on to the map to go on with.
       response.data.location = {
@@ -150,5 +156,13 @@ export default {
 
 .main-toolbar .v-toolbar__content {
   z-index: 40;
+}
+
+@media screen and (max-width: 1300px) {
+  .map-filter.v-navigation-drawer {
+    padding: 80px 30px;
+    width: 350px;
+    background-color: antiquewhite;
+  }
 }
 </style>

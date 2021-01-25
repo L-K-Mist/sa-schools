@@ -22,6 +22,11 @@
                   JAMStack-Style!! :)
                 </p>
                 <p>
+                  If the ip-lookup worked correctly, then the map should start
+                  with schools in your area, otherwise it will start with some
+                  schools around Jeffreys Bay.
+                </p>
+                <p>
                   To play with this School Data in a GraphiQL sandbox, copy this
                   api's endpoint
                   <strong
