@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app color="blue">
     <v-app-bar
       color="#aad3df"
       style="z-index:999;"
@@ -156,6 +156,9 @@ export default {
 
 .main-toolbar .v-toolbar__content {
   z-index: 40;
+}
+.theme--light.v-application {
+  background-color: #f7f6f2 !important;
 }
 
 @media screen and (max-width: 1300px) {
