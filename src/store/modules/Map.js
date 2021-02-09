@@ -94,7 +94,8 @@ const actions = {
   },
   setView({ state }, payload) {
     const { lat, lng } = payload;
-    state.map.setView(payload, 7);
+    const zoom = payload.zoom ? payload.zoom : 7;
+    state.map.setView(payload, zoom);
   },
 };
 

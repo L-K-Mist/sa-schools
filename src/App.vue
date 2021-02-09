@@ -22,8 +22,10 @@
       right
       app
       clipped
+      temporary
       style="z-index: 500;"
     >
+      <div id="spacer"></div>
       <h3 color="grey">Search for Schools</h3>
       <v-autocomplete
         v-model="selectedProvinces"
@@ -138,11 +140,19 @@ export default {
     }, 1000);
   },
   methods: {
-    fetchSchools() {
-      this.$store.dispatch("kznSchools", {
+    async fetchSchools() {
+      const saCentered = {
+        lat: -28.552743254412608,
+        lng: 24.488525390625,
+        zoom: 5,
+      };
+      this.$store.dispatch("setView", saCentered);
+
+      await this.$store.dispatch("kznSchools", {
         regions: this.selectedRegions,
         phases: this.selectedPhases,
       });
+      this.drawer = false;
     },
   },
 };
@@ -161,6 +171,9 @@ export default {
   background-color: #f7f6f2 !important;
 }
 
+#spacer {
+  height: 50px;
+}
 @media screen and (max-width: 1300px) {
   .map-filter.v-navigation-drawer {
     padding: 80px 30px;
