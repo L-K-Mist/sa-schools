@@ -1,4 +1,5 @@
 # sa-schools
+[demo](https://sa-schools.netlify.app/#/)
 
 ## Project setup
 ```
